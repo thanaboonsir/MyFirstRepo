@@ -1,0 +1,89 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "25c2e802dc7bc47ec90c",
+  "position": {
+    "x": 9.6055210305030236,
+    "y": 0,
+    "z": 0,
+    "height": 279.93232717465958,
+    "width": 458.32057488400142,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "RPT_AGG_SUBS_TOPPING_PKG_POSTPAID_D_VW"
+                        }
+                      },
+                      "Property": "NO_TRN"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(RPT_AGG_SUBS_TOPPING_PKG_POSTPAID_D_VW.NO_TRN)",
+              "nativeQueryRef": "Sum of NO_TRN"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "RPT_AGG_SUBS_TOPPING_PKG_POSTPAID_D_VW"
+                      }
+                    },
+                    "Property": "NO_TRN"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ba32f9a64289241538c1",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "RPT_AGG_SUBS_TOPPING_PKG_POSTPAID_D_VW"
+                  }
+                },
+                "Property": "NO_TRN"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

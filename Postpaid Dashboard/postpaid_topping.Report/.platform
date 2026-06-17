@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "postpaid_topping"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "d6af2d53-9d48-469b-9368-0f3f88b2d413"
+  }
+}
