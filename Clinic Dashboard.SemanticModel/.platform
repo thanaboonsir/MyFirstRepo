@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Clinic Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "61b6df6e-993c-4b58-bdae-5c9623004f89"
+  }
+}

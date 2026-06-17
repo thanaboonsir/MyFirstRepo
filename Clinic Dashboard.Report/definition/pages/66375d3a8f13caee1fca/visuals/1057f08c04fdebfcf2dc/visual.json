@@ -1,0 +1,56 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "1057f08c04fdebfcf2dc",
+  "position": {
+    "x": 0,
+    "y": 234,
+    "z": 3000,
+    "height": 108,
+    "width": 266,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "query"
+                    }
+                  },
+                  "Property": "Unassigned Open Tickets"
+                }
+              },
+              "queryRef": "query.Unassigned Open Tickets",
+              "nativeQueryRef": "Unassigned Open Tickets"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "query"
+                  }
+                },
+                "Property": "Unassigned Open Tickets"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

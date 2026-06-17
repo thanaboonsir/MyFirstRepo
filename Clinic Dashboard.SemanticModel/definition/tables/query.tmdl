@@ -1,0 +1,189 @@
+table query
+	lineageTag: 82537a6a-bf69-4649-9273-60157c5fd0b7
+
+	measure 'Open Tickets' = CALCULATE(SUM('query'[Total Tickets]), 'query'[Status] IN {"New", "In progress"})
+		formatString: 0
+		lineageTag: b14e1202-96b6-499f-bdc8-b4e5c14b6418
+
+	measure 'Resolved Tickets' = CALCULATE(SUM(query[Total Tickets]),'query'[Status]="Resolved")
+		formatString: 0
+		lineageTag: 02c7b695-7ff9-46eb-aadb-74f037b5a822
+
+	measure 'Unassigned Open Tickets' = CALCULATE(SUM('query'[Total Tickets]), 'query'[Status]IN{"New","In progress"}, 'query'[Assigned to]="")
+		formatString: 0
+		lineageTag: c069546c-a940-4cf5-888f-229c20824897
+
+	measure 'Report Date' = "As of " & FORMAT(TODAY(), "DD/MM/YYYY")
+		lineageTag: 52c0a076-d5f8-41ad-9619-392db01ea599
+
+	measure 'Blank Asking Date' = CALCULATE(SUM('query'[Total Tickets]), 'query'[Asking_Date] = BLANK())
+		formatString: 0
+		lineageTag: eb179254-748d-48b1-a532-11a8a64197ce
+
+	measure 'Blank Assigned To' = CALCULATE(SUM('query'[Total Tickets]), 'query'[Assigned to] = BLANK())
+		formatString: 0
+		lineageTag: 9fc6c93c-802c-432b-8f47-6021437060ff
+
+	measure 'Blank Category' = ```
+			CALCULATE(SUM('query'[Total Tickets]), 'query'[Category] = BLANK())
+			
+			```
+		formatString: 0
+		lineageTag: 8f3cac7b-8c62-4dad-bb7d-d79835393e6e
+
+	column 'Total Tickets'
+		dataType: int64
+		formatString: 0
+		lineageTag: 18c475dd-dd5e-40c1-beed-c496b109d4f5
+		summarizeBy: sum
+		sourceColumn: Total Tickets
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Opened by'
+		dataType: string
+		lineageTag: 56df9200-b887-4b61-9f64-76302731c816
+		summarizeBy: none
+		sourceColumn: Opened by
+
+		annotation SummarizationSetBy = Automatic
+
+	column BU
+		dataType: string
+		lineageTag: 40e7edd7-4cd4-4559-a83d-66123103752a
+		summarizeBy: none
+		sourceColumn: BU
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 74f40fa2-fc8f-429a-9706-ab2671ee324b
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Database
+		dataType: string
+		lineageTag: 493ca807-68e5-4d17-a802-66d5ea3a091e
+		summarizeBy: none
+		sourceColumn: Database
+
+		annotation SummarizationSetBy = Automatic
+
+	column Channel
+		dataType: string
+		lineageTag: 35b1571e-ffab-4ef5-a2ba-034c2e5cfb84
+		summarizeBy: none
+		sourceColumn: Channel
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: b806ab62-3d10-4871-8467-1e4860420152
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Assigned to'
+		dataType: string
+		lineageTag: 058d40c1-b255-48db-add1-f1fe81db18cd
+		summarizeBy: none
+		sourceColumn: Assigned to
+
+		annotation SummarizationSetBy = Automatic
+
+	column สร้างโดย
+		dataType: string
+		lineageTag: 5b55962e-8739-496f-a257-292be0854782
+		summarizeBy: none
+		sourceColumn: สร้างโดย
+
+		annotation SummarizationSetBy = Automatic
+
+	column Asking_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 188a0519-67a2-4f84-b970-9e8f0d1d3c81
+		summarizeBy: none
+		sourceColumn: Asking_Date
+
+		variation Variation
+			isDefault
+			relationship: 8dafe3f5-cda4-4cae-8908-385eb4eb9ff4
+			defaultHierarchy: LocalDateTable_5555f7ac-2158-4ff3-a271-c7b35fb4a2a5.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Respond_log
+		dataType: string
+		lineageTag: 4ce54b21-f748-4282-997c-69b58ff000f6
+		summarizeBy: none
+		sourceColumn: Respond_log
+
+		annotation SummarizationSetBy = Automatic
+
+	column CategoryNormalized
+		dataType: string
+		lineageTag: 8447cc9b-c4e0-4d98-ac8e-338d7140b1ab
+		summarizeBy: none
+		sourceColumn: CategoryNormalized
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Group'
+		dataType: string
+		lineageTag: 5680cd09-ed15-414d-93ec-3b2e7b996070
+		summarizeBy: none
+		sourceColumn: Status Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 8bfa2ff8-093e-43ac-ad75-640136b00086
+		summarizeBy: none
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = User
+
+	column Detail
+		dataType: string
+		lineageTag: cf190564-a61e-4ef1-b769-4f0402b01b09
+		summarizeBy: none
+		sourceColumn: Detail
+
+		annotation SummarizationSetBy = Automatic
+
+	partition query = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\te90055719\OneDrive - True Corporation Public Company Limited\Data Clinic\query.xlsx"), null, true),
+				    query_Sheet = Source{[Item="query",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(query_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ID", Int64.Type}, {"Detail", type text}, {"Opened by", type text}, {"BU", type text}, {"Category", type text}, {"Database", type text}, {"Channel", type text}, {"Status", type text}, {"Assigned to", type text}, {"สร้างโดย", type text}, {"Asking_Date", type date}, {"Respond_log", type text}, {"ชนิดของรายการ", type text}, {"เส้นทาง", type text}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Changed Type",{{"Category", type text}}),
+				    #"Added Custom1" = Table.AddColumn(#"Changed Type1", "Custom", each Text.Combine(List.Sort(Text.Split([Category], ";#")), ";#")),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Custom1",{{"Custom", "CategoryNormalized"}}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Renamed Columns",{{"Category", Text.Trim, type text}, {"BU", Text.Trim, type text}, {"Database", Text.Trim, type text}, {"Channel", Text.Trim, type text}, {"Status", Text.Trim, type text}}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Trimmed Text",{"ชนิดของรายการ"}),
+				    #"Added Custom" = Table.AddColumn(#"Removed Columns1", "TicketCount", each 1),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Added Custom",{"TicketCount", "Opened by", "BU", "Category", "Database", "Channel", "Status", "Assigned to", "สร้างโดย", "Asking_Date", "Respond_log", "เส้นทาง"}),
+				    #"Removed Columns2" = Table.RemoveColumns(#"Reordered Columns",{"เส้นทาง"}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Removed Columns2",{{"TicketCount", "Total Tickets"}}),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Renamed Columns1",{{"Total Tickets", Int64.Type}}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Changed Type2", "Status Group", each if [Status] = "Resolved" then "Resolved" else "Open")
+				in
+				    #"Added Conditional Column"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
