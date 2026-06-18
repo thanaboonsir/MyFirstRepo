@@ -1,0 +1,89 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "43260cded6ce16b927dc",
+  "position": {
+    "x": 367.75423373925861,
+    "y": 26.072128511365349,
+    "z": 1,
+    "height": 279.93232717465958,
+    "width": 458.32057488400142,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "RPT_AGG_SUBS_TOPPING_PKG_POSTPAID_D_VW"
+                        }
+                      },
+                      "Property": "Age Of Use Day"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(RPT_AGG_SUBS_TOPPING_PKG_POSTPAID_D_VW.Age Of Use Day)",
+              "nativeQueryRef": "Sum of Age Of Use Day"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "RPT_AGG_SUBS_TOPPING_PKG_POSTPAID_D_VW"
+                      }
+                    },
+                    "Property": "Age Of Use Day"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "5b693e608d740bd15067",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "RPT_AGG_SUBS_TOPPING_PKG_POSTPAID_D_VW"
+                  }
+                },
+                "Property": "Age Of Use Day"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}
